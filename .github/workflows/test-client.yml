@@ -1,0 +1,21 @@
+name: Test Client Check
+
+on:
+  pull_request:
+    paths:
+      - 'client/**'
+
+jobs:
+  test-client:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+    - name: Install Client dependencies
+      working-directory: client
+      run: npm install
+    - name: Test Client
+      working-directory: client
+      run: npm run test
