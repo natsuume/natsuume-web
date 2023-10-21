@@ -1,0 +1,21 @@
+name: ESLint Client Check
+
+on:
+  pull_request:
+    paths:
+      - 'client/**'
+
+jobs:
+  eslint-client:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+    - name: Install Client dependencies
+      working-directory: client
+      run: npm install
+    - name: ESLint Client
+      working-directory: client
+      run: npm run eslint -- . --ext .js,.jsx,.ts,.tsx
