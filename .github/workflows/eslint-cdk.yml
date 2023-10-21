@@ -18,4 +18,4 @@ jobs:
       run: npm install
     - name: ESLint CDK
       working-directory: cdk
-      run: npm run eslint -- . --ext .js,.jsx,.ts,.tsx
+      run: npx eslint -- . --ext .js,.jsx,.ts,.tsx
