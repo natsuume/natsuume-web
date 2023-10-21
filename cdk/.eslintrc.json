@@ -1,11 +1,10 @@
 {
   "env": {
-    "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "extends": [
     "google",
-    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:prettier/recommended"
