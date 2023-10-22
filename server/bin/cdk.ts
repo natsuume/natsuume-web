@@ -5,4 +5,4 @@ import { BaseStack } from "../lib/cdk-stack";
 
 const app = new cdk.App();
 
-new BaseStack(app, "DefaultStack", {});
+new BaseStack(app, "BaseStack", {});
