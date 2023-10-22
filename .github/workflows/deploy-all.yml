@@ -1,0 +1,23 @@
+name: Deploy All Stack to AWS Using AWS CDK
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'server/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to AWS
+        uses: youyo/aws-cdk-github-actions@v2.1.4
+        with:
+          cdk_subcommand: 'deploy'
+          cdk_args: '--require-approval never'
+          working_dir: 'server'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-northeast-1
