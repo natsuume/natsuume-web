@@ -1,0 +1,21 @@
+name: ESLint Server Side Check
+
+on:
+  pull_request:
+    paths:
+      - 'server/**'
+
+jobs:
+  eslint-server-side:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+    - name: Install Server Side dependencies
+      working-directory: server
+      run: npm install
+    - name: ESLint Server Side
+      working-directory: server
+      run: npm run lint -- . --ext .js,.jsx,.ts,.tsx
