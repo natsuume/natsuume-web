@@ -1,9 +1,9 @@
-name: Test CDK Check
+name: Test Server Side Check
 
 on:
   pull_request:
     paths:
-      - 'cdk/**'
+      - 'server/**'
 
 jobs:
   test-cdk:

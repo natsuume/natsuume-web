@@ -1,9 +1,9 @@
-name: ESLint CDK Check
+name: ESLint Server Side Check
 
 on:
   pull_request:
     paths:
-      - 'cdk/**'
+      - 'server/**'
 
 jobs:
   eslint-cdk:
