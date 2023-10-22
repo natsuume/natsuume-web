@@ -16,8 +16,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
       - name: Install Server Side Dependencies
+        working-directory: ./server
         run: npm install
       - name: Deploy to AWS
+        working-directory: ./server
         env:
           AWS_DEFAULT_REGION: ap-northeast-1
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
