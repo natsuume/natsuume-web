@@ -11,13 +11,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+      - name: Install Server Side Dependencies
+        run: npm install
       - name: Deploy to AWS
-        uses: youyo/aws-cdk-github-actions@v2.1.4
-        with:
-          cdk_subcommand: 'deploy'
-          cdk_args: '--require-approval never'
-          working_dir: 'server'
         env:
+          AWS_DEFAULT_REGION: ap-northeast-1
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ap-northeast-1
+        run : npm run cdk -- deploy --require-approval never
