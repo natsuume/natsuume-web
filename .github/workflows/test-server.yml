@@ -6,16 +6,16 @@ on:
       - 'server/**'
 
 jobs:
-  test-cdk:
+  test-server-side:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Set up Node.js
       uses: actions/setup-node@v2
-    - name: Install CDK dependencies
-      working-directory: cdk
+    - name: Install Server Side dependencies
+      working-directory: server
       run: npm install
-    - name: Test CDK
-      working-directory: cdk
+    - name: Test Server Side
+      working-directory: server
       run: npm run test
