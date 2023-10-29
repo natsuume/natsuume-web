@@ -36,4 +36,4 @@ jobs:
           DOMAIN_NAME: ${{ vars.DOMAIN_NAME }}
           AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
           FRONTEND_BUILD_OUT_DIR_PATH: ${{ vars.FRONTEND_BUILD_OUT_DIR_PATH }}
-        run: npm run cdk -- deploy --require-approval never
+        run: npm run cdk -- deploy -all --require-approval never
