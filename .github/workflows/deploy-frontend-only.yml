@@ -1,0 +1,44 @@
+name: FrontEnd Deployment
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "client/**"
+      - "!server/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    environment: deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm install
+      - name: Build
+        run: npm run build
+  deploy:
+    environment: deployment
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+      - name: Install dependencies in client
+        working-directory: ./client
+        run: npm install
+      - name: Install dependencies in server
+        working-directory: ./server
+        run: npm install
+      - name: Deploy FrontEnd
+        working-directory: ./server
+
+        run: npm run cdk -- deploy DeployStack --require-approval never
