@@ -75,10 +75,13 @@ class HostedZoneRecordsConstruct extends Construct {
   constructor(scope: Construct, id: string, distribution: IDistribution) {
     super(scope, id);
 
-    const natsuumeDevHostedZone = HostedZone.fromHostedZoneId(
+    const natsuumeDevHostedZone = HostedZone.fromHostedZoneAttributes(
       this,
       "hosted-zone",
-      hostedZoneId,
+      {
+        hostedZoneId: hostedZoneId,
+        zoneName: "natsuume.dev",
+      },
     );
 
     new ARecord(this, "a-record", {
