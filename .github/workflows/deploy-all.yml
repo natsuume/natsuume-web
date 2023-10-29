@@ -5,12 +5,13 @@ on:
     branches:
       - master
     paths:
-      - 'server/**'
+      - "server/**"
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: deployment
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -21,8 +22,4 @@ jobs:
         run: npm install
       - name: Deploy to AWS
         working-directory: ./server
-        env:
-          AWS_DEFAULT_REGION: ap-northeast-1
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run : npm run cdk -- deploy --require-approval never
+        run: npm run cdk -- deploy --require-approval never
