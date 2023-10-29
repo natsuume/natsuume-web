@@ -6,7 +6,7 @@ import { DeployStack } from "../lib/DeployStack";
 
 const app = new cdk.App();
 
-const baseStack = new BaseStack(app, "natsuume-dev_base-stack");
+const baseStack = new BaseStack(app, "natsuume-dev-base-stack");
 
 new DeployStack(
   app,

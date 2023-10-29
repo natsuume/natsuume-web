@@ -21,7 +21,7 @@ export class DeployStack extends Stack {
   ) {
     super(scope, id, props);
 
-    new BucketDeployment(this, "deployFrontEnd", {
+    new BucketDeployment(this, "deploy-front-end", {
       sources: [Source.asset(frontEndBuildOutputDirPath)],
       destinationBucket: deployTargetBucket,
       distribution: distribution,
