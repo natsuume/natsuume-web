@@ -40,7 +40,6 @@ export class BaseStack extends cdk.Stack {
 
     this.frontEndBucket = new Bucket(this, "front-end-bucket", {
       bucketName: "natsuume-dev-front-end",
-      websiteIndexDocument: "index.html",
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       autoDeleteObjects: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
