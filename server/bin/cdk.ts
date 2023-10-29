@@ -8,6 +8,11 @@ const app = new cdk.App();
 
 const baseStack = new BaseStack(app, "natsuume-dev_base-stack");
 
-const deployStack = new DeployStack(app, "natsuume-dev_deploy-stack", baseStack.frontEndBucket);
+new DeployStack(
+  app,
+  "natsuume-dev_deploy-stack",
+  baseStack.frontEndBucket,
+  baseStack.distribution,
+);
 
 cdk.Tags.of(app).add("project", "natsuume-dev");
