@@ -9,38 +9,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    environment: deployment
-    runs-on: ubuntu-latest
-    if: ${{ !contains(toJson(github.event_name.push.changed_files) , 'server/') }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-      - name: Install dependencies
-        working-directory: ./client
-        run: npm install
-      - name: Build
-        working-directory: ./client
-        run: npm run build
   deploy:
     environment: deployment
-    needs: build
     runs-on: ubuntu-latest
     if: ${{ !contains(toJson(github.event_name.push.changed_files) , 'server/') }}
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v2
-      - name: Install dependencies in client
+      - name: Install Front End dependencies
         working-directory: ./client
         run: npm install
-      - name: Install dependencies in server
+      - name: Build Client
+        working-directory: ./client
+        run: npm run build
+      - name: Install Server Side Dependencies
         working-directory: ./server
         run: npm install
-      - name: Deploy FrontEnd
+      - name: Deploy to AWS
         working-directory: ./server
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
