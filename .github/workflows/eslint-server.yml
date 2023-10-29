@@ -2,8 +2,6 @@ name: ESLint Server Side Check
 
 on:
   pull_request:
-    paths:
-      - 'server/**'
 
 jobs:
   eslint-server-side:

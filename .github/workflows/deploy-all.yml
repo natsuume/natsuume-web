@@ -9,6 +9,20 @@ on:
   workflow_dispatch:
 
 jobs:
+  build:
+    environment: deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm install
+      - name: Build
+        working-directory: ./client
+        run: npm run build
   deploy:
     runs-on: ubuntu-latest
     environment: deployment
