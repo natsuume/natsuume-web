@@ -10,7 +10,7 @@ const baseStack = new BaseStack(app, "natsuume-dev-base-stack");
 
 new DeployStack(
   app,
-  "natsuume-dev_deploy-stack",
+  "natsuume-dev-deploy-stack",
   baseStack.frontEndBucket,
   baseStack.distribution,
 );
