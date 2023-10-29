@@ -26,6 +26,9 @@ jobs:
       - name: Install Server Side Dependencies
         working-directory: ./server
         run: npm install
+      - name: check cdk.json
+        working-directory: ./server
+        run: cat cdk.json
       - name: Deploy to AWS
         working-directory: ./server
         env:
