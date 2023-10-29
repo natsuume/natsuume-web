@@ -9,12 +9,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-condition:
-    runs-on: ubuntu-latest
-    if: ${{ !contains(toJson(github.event_name.push.changed_files) , 'server/') }}
   build:
     environment: deployment
     runs-on: ubuntu-latest
+    if: ${{ !contains(toJson(github.event_name.push.changed_files) , 'server/') }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,6 +27,7 @@ jobs:
     environment: deployment
     needs: build
     runs-on: ubuntu-latest
+    if: ${{ !contains(toJson(github.event_name.push.changed_files) , 'server/') }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
