@@ -11,7 +11,7 @@ on:
 jobs:
   check-condition:
     runs-on: ubuntu-latest
-    if: !contains(toJson(github.event.pull_request.changed_files) , 'server/')
+    if: !contains(toJson(github.event.pull_request.changed_files), 'server/')
   build:
     environment: deployment
     runs-on: ubuntu-latest
