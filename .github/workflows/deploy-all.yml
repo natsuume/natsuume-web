@@ -25,6 +25,7 @@ jobs:
         run: npm run build
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     environment: deployment
     steps:
       - name: Checkout
