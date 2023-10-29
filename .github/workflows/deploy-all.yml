@@ -42,4 +42,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           HOSTED_ZONE_ID: ${{ secrets.HOSTED_ZONE_ID }}
           CERTIFICATE_ARN: ${{ secrets.CERTIFICATE_ARN }}
+          DOMAIN_NAME: ${{ vars.DOMAIN_NAME }}
+          AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
+          FRONTEND_BUILD_OUT_DIR_PATH: ${{ vars.FRONTEND_BUILD_OUT_DIR_PATH }}
         run: npm run cdk -- deploy --require-approval never
